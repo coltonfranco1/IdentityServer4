@@ -29,11 +29,8 @@ namespace ConsoleMTLSClient
 
             var disco = await client.GetDiscoveryDocumentAsync("https://identityserver.local");
             if (disco.IsError) throw new Exception(disco.Error);
-
-            var endpoint = disco
-                    .TryGetValue(OidcConstants.Discovery.MtlsEndpointAliases)
-                    .Value<string>(OidcConstants.Discovery.TokenEndpoint)
-                    .ToString();
+            
+            var endpoint = disco.TryGetValue(OidcConstants.Discovery.MtlsEndpointAliases)?.TryGetValue(OidcConstants.Discovery.TokenEndpoint).ToString();
             
             var response = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
