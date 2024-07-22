@@ -1,11 +1,11 @@
 <Project>
 
   <PropertyGroup>
-    <FrameworkVersion>8.0.0</FrameworkVersion>
+    <FrameworkVersion>8.0.7</FrameworkVersion>
     <ExtensionsVersion>8.0.0</ExtensionsVersion>
-    <EntityFrameworkVersion>8.0.0</EntityFrameworkVersion>
+    <EntityFrameworkVersion>8.0.7</EntityFrameworkVersion>
     
-    <IdentityServerVersion>4.1.2-*</IdentityServerVersion>
+    <IdentityServerVersion>4.1.2</IdentityServerVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +22,7 @@
     <PackageReference Update="xunit.runner.visualstudio" Version="2.8.2" PrivateAssets="All" />
 
     <!--our stuff -->
-    <PackageReference Update="IdentityModel" Version="7.0.0" />
+    <PackageReference Update="IdentityModel" Version="4.4.0" />
 
     <PackageReference Update="IdentityServer4" Version="$(IdentityServerVersion)" />
     <PackageReference Update="IdentityServer4.AspNetIdentity" Version="$(IdentityServerVersion)" />
@@ -39,7 +39,7 @@
     <PackageReference Update="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(ExtensionsVersion)" />
     
     <!--misc -->
-    <PackageReference Update="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Update="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Update="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.0.0" />
     <PackageReference Update="System.IdentityModel.Tokens.Jwt" Version="8.0.0" />
     <PackageReference Update="xs" Version="4.7.0" />
@@ -48,7 +48,6 @@
     <!--microsoft asp.net core -->
     <PackageReference Update="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="$(FrameworkVersion)" />
     <PackageReference Update="Microsoft.AspNetCore.TestHost" Version="$(FrameworkVersion)" />
-    <PackageReference Update="Microsoft.AspNetCore.Identity" Version="$(FrameworkVersion)" />
     <PackageReference Update="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="$(FrameworkVersion)" />
     <PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(FrameworkVersion)" />
     <PackageReference Update="Microsoft.AspNetCore.Authentication.Certificate" Version="$(FrameworkVersion)"/>

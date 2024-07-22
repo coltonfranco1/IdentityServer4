@@ -31,7 +31,13 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
         private readonly IdentityServerPipeline _mockPipeline = new IdentityServerPipeline();
         private readonly Client _client;
 
-        private readonly string _symmetricJwk = @"{ 'kty': 'oct', 'use': 'sig', 'kid': '1', 'k': 'nYA-IFt8xTsdBHe9hunvizcp3Dt7f6qGqudq18kZHNtvqEGjJ9Ud-9x3kbQ-LYfLHS3xM2MpFQFg1JzT_0U_F8DI40oby4TvBDGszP664UgA8_5GjB7Flnrlsap1NlitvNpgQX3lpyTvC2zVuQ-UVsXbBDAaSBUSlnw7SE4LM8Ye2WYZrdCCXL8yAX9vIR7vf77yvNTEcBCI6y4JlvZaqMB4YKVSfygs8XqGGCHjLpE5bvI-A4ESbAUX26cVFvCeDg9pR6HK7BmwPMlO96krgtKZcXEJtUELYPys6-rbwAIdmxJxKxpgRpt0FRv_9fm6YPwG7QivYBX-vRwaodL1TA', 'alg': 'HS256'}";
+        private readonly string _symmetricJwk = @"{
+           ""kty"":""oct"",
+           ""use"":""sig"",
+           ""kid"":""1"",
+           ""k"":""nYA-IFt8xTsdBHe9hunvizcp3Dt7f6qGqudq18kZHNtvqEGjJ9Ud-9x3kbQ-LYfLHS3xM2MpFQFg1JzT_0U_F8DI40oby4TvBDGszP664UgA8_5GjB7Flnrlsap1NlitvNpgQX3lpyTvC2zVuQ-UVsXbBDAaSBUSlnw7SE4LM8Ye2WYZrdCCXL8yAX9vIR7vf77yvNTEcBCI6y4JlvZaqMB4YKVSfygs8XqGGCHjLpE5bvI-A4ESbAUX26cVFvCeDg9pR6HK7BmwPMlO96krgtKZcXEJtUELYPys6-rbwAIdmxJxKxpgRpt0FRv_9fm6YPwG7QivYBX-vRwaodL1TA"",
+           ""alg"":""HS256""
+        }";
         private readonly RsaSecurityKey _rsaKey;
 
         public JwtRequestAuthorizeTests()
@@ -510,8 +516,8 @@ namespace IdentityServer.IntegrationTests.Endpoints.Authorize
                     new Claim("display", "popup"),
                     new Claim("ui_locales", "ui_locale_value"),
                     new Claim("foo", "123foo"),
-                    new Claim("someObj", someObjJson, Microsoft.IdentityModel.JsonWebTokens.JsonClaimValueTypes.Json),
-                    new Claim("someArr", someArrJson, Microsoft.IdentityModel.JsonWebTokens.JsonClaimValueTypes.JsonArray),
+                    new Claim("someObj", someObjJson),
+                    new Claim("someArr", someArrJson),
             });
 
             var url = _mockPipeline.CreateAuthorizeUrl(
