@@ -3,6 +3,7 @@
 
 
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -149,6 +150,15 @@ namespace IdentityServer.IntegrationTests.Clients
 
             var cnf = payload["cnf"] as JObject;
             cnf["x5t#S256"].ToString().Should().Be("foo");
+        }
+
+        [Fact]
+        public void SerializationTest()
+        {
+            var payload = new JwtPayload();
+            payload.Add("cnf", JRaw.Parse("{\"x5t#S256\":\"foo\"}"));
+            var newtonsoftJson = Newtonsoft.Json.JsonConvert.SerializeObject(payload);
+            newtonsoftJson.Should().Be("{\"cnf\":{\"x5t#S256\":\"foo\"}}");
         }
 
         [Fact]

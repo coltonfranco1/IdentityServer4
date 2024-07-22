@@ -33,7 +33,7 @@ namespace IdentityServer4.Extensions
         /// </exception>
         public static JwtPayload CreateJwtPayload(this Token token, ISystemClock clock, IdentityServerOptions options, ILogger logger)
         {
-            var payload = new JwtPayload(
+            var payload = new CustomJwtPayload(
                 token.Issuer,
                 null,
                 null,

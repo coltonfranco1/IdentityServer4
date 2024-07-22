@@ -2,7 +2,7 @@
   
   <PropertyGroup>
     <PackageId>IdentityServer4</PackageId>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Description>OpenID Connect and OAuth 2.0 Framework for ASP.NET Core</Description>
     <Authors>Brock Allen;Dominick Baier</Authors>
     <AssemblyName>IdentityServer4</AssemblyName>
@@ -45,7 +45,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="6.27.0" />
 
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.6" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" Version="1.1.1" />
   </ItemGroup>
 </Project>

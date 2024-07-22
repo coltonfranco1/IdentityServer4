@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <PackageId>IdentityServer4.EntityFramework</PackageId>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
 
     <Description>EntityFramework persistence layer for IdentityServer4</Description>
     <Authors>Brock Allen;Dominick Baier;Scott Brady</Authors>
@@ -21,6 +20,7 @@
     <AssemblyOriginatorKeyFile>../../../key.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>

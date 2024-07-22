@@ -1,7 +1,3 @@
-// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
 using System;
 using System.Linq;
 using IdentityModel;
@@ -23,18 +19,14 @@ namespace sample
         public IWebHostEnvironment Environment { get; }
         public ILoggerFactory LoggerFactory { get; set; }
 
-        public Startup(IConfiguration config, IWebHostEnvironment environment, ILoggerFactory loggerFactory)
+        public Startup(IConfiguration config, IWebHostEnvironment environment)
         {
             Configuration = config;
             Environment = environment;
-            LoggerFactory = loggerFactory;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //var name = "CN=test.dataprotection";
-            //var cert = X509.LocalMachine.My.SubjectDistinguishedName.Find(name, false).FirstOrDefault();
-
             var cn = Configuration.GetConnectionString("db");
 
             services.AddDataProtection()
@@ -43,7 +35,6 @@ namespace sample
                     ConfigureDbContext = b => b.UseSqlServer(cn),
                     LoggerFactory = LoggerFactory,
                 });
-                //.ProtectKeysWithCertificate(cert);
 
             var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
@@ -54,26 +45,18 @@ namespace sample
                     {
                         options.DeleteRetiredKeys = true;
                         options.KeyType = IdentityServer4.KeyManagement.KeyType.RSA;
-
-                        // all of these values in here are changed for local testing
                         options.InitializationDuration = TimeSpan.FromSeconds(5);
                         options.InitializationSynchronizationDelay = TimeSpan.FromSeconds(1);
-
                         options.KeyActivationDelay = TimeSpan.FromSeconds(10);
                         options.KeyExpiration = options.KeyActivationDelay * 2;
                         options.KeyRetirement = options.KeyActivationDelay * 3;
-
-                        // You can get your own license from:
-                        // https://www.identityserver.com/products/KeyManagement
                         options.Licensee = "your licensee";
                         options.License = "your license key";
                     })
                     .PersistKeysToDatabase(new DatabaseKeyManagementOptions {
                         ConfigureDbContext = b => b.UseSqlServer(cn),
                     })
-                    .ProtectKeysWithDataProtection()
-                    //.EnableInMemoryCaching() // caching disabled unless explicitly enabled
-                ;
+                    .ProtectKeysWithDataProtection();
         }
 
         public void Configure(IApplicationBuilder app)
